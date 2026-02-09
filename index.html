@@ -37,20 +37,29 @@
         }
 
         header {
-            background: var(--surface);
-            padding: 16px 24px;
-            box-shadow: var(--shadow);
-            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 20px 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 8px;
+            border-bottom: 1px solid rgba(66, 133, 244, 0.1);
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 400;
+            font-size: 26px;
+            font-weight: 300;
             color: var(--text-primary);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h1::before {
+            content: '📅';
+            font-size: 28px;
         }
 
         .header-actions {
@@ -94,9 +103,91 @@
 
         .calendar-container {
             background: var(--surface);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 24px;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 24px 32px 32px 32px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .calendar-toolbar {
+            margin-bottom: 32px;
+        }
+
+        .calendar-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 24px;
+        }
+
+        .calendar-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .calendar-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .legend-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .legend-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            padding: 6px 12px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: all 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            border-color: rgba(66, 133, 244, 0.3);
+        }
+
+        .legend-item.active {
+            background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.2);
+        }
+
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
         }
 
         .calendar-header {
@@ -148,6 +239,141 @@
             padding: 4px;
         }
 
+        .filter-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-container .form-select {
+            min-width: 180px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+            background: var(--surface);
+        }
+
+        .calendar-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .calendar-controls .form-select {
+            min-width: 180px;
+            padding: 10px 16px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .calendar-controls .form-select:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
+        }
+
+        .calendar-controls .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #f1f3f4;
+            border-radius: 8px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .view-toggle-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .view-toggle-btn:hover {
+            background: rgba(255,255,255,0.5);
+            color: var(--text-primary);
+        }
+
+        .view-toggle-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .year-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .year-month-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .year-month-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .year-month-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .year-month-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            font-size: 11px;
+        }
+
+        .year-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .year-day:hover {
+            background: #e8f0fe;
+        }
+
+        .year-day.has-event {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .year-day.other-month {
+            opacity: 0.3;
+        }
+
         .view-btn {
             padding: 8px 16px;
             background: none;
@@ -189,6 +415,31 @@
             cursor: pointer;
             transition: background 0.2s;
             position: relative;
+        }
+
+        .day-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
+        .badge-ferie {
+            background: linear-gradient(135deg, #ffeaea 0%, #ffd5d5 100%);
+            color: #c1414e;
+            border: 1px solid #ffc5c5;
+        }
+
+        .badge-religieux {
+            background: linear-gradient(135deg, #e8f5e9 0%, #d4edd6 100%);
+            color: #2d7a3e;
+            border: 1px solid #c3e6c7;
         }
 
         .day-cell:hover {
@@ -505,18 +756,107 @@
             color: var(--text-secondary);
         }
 
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 70px;
+            height: 70px;
+            border: 7px solid rgba(255, 255, 255, 0.2);
+            border-top: 7px solid #4285f4;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .loading-subtext {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            margin-top: 12px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
         @media (max-width: 768px) {
             .container {
+                padding: 8px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 12px;
                 padding: 12px;
             }
 
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .calendar-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            .calendar-nav {
+                justify-content: space-between;
+            }
+
+            .current-month {
+                font-size: 18px;
+                min-width: 150px;
+            }
+
+            .filter-container {
+                width: 100%;
+            }
+
+            .filter-container .form-select {
+                width: 100%;
+            }
+
             .calendar-grid {
-                font-size: 12px;
+                font-size: 11px;
             }
 
             .day-cell {
                 min-height: 80px;
                 padding: 4px;
+            }
+
+            .day-number {
+                font-size: 12px;
+            }
+
+            .event-item {
+                font-size: 10px;
+                padding: 2px 4px;
             }
 
             .form-row {
@@ -526,6 +866,70 @@
             .modal-content {
                 width: 95%;
                 padding: 16px;
+                max-height: 85vh;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .calendar-header-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .calendar-nav-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .calendar-controls-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .legend-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .legend-items {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .legend-item {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .view-toggle {
+                width: 100%;
+            }
+
+            .view-toggle-btn {
+                flex: 1;
+                padding: 10px 16px;
+            }
+
+            .year-view {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .day-badge {
+                font-size: 7px;
+                padding: 2px 5px;
+                max-width: 80%;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     </style>
@@ -545,26 +949,30 @@
         </header>
 
         <div class="calendar-container">
-            <div class="calendar-header">
-                <div class="calendar-nav">
-                    <button class="nav-btn" onclick="previousMonth()">‹</button>
-                    <div class="current-month" id="currentMonth"></div>
-                    <button class="nav-btn" onclick="nextMonth()">›</button>
-                    <button class="btn btn-secondary" onclick="goToToday()">Aujourd'hui</button>
+            <div class="calendar-toolbar">
+                <div class="calendar-header-row">
+                    <div class="calendar-nav-left">
+                        <button class="nav-btn" onclick="previousMonth()">‹</button>
+                        <div class="current-month" id="currentMonth"></div>
+                        <button class="nav-btn" onclick="nextMonth()">›</button>
+                        <button class="btn btn-secondary" onclick="goToToday()">Aujourd'hui</button>
+                    </div>
+                    <div class="calendar-controls-right">
+                        <div class="view-toggle">
+                            <button class="view-toggle-btn active" onclick="switchView('month')">Mensuel</button>
+                            <button class="view-toggle-btn" onclick="switchView('year')">Annuel</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="view-selector">
-                    <button class="view-btn active" onclick="changeView('month')">Mois</button>
-                    <button class="view-btn" onclick="changeView('week')">Semaine</button>
-                    <button class="view-btn" onclick="changeView('day')">Jour</button>
+
+                <div class="legend-row">
+                    <span class="legend-label">Types d'événements :</span>
+                    <div class="legend-items" id="legendItems"></div>
                 </div>
             </div>
 
             <div id="calendarGrid" class="calendar-grid"></div>
-
-            <div class="legend">
-                <div class="legend-title">Types d'événements</div>
-                <div class="legend-items" id="legendItems"></div>
-            </div>
+            <div id="yearView" class="year-view" style="display: none;"></div>
         </div>
     </div>
 
@@ -638,7 +1046,7 @@
             <div class="event-details" id="eventDetailsContent"></div>
 
             <div class="modal-actions">
-                <button class="btn btn-primary" onclick="createDriveFolder()" id="createFolderBtn">
+                <button class="btn btn-primary" onclick="openFolderSelectionModal()" id="createFolderBtn">
                     📁 Créer dossier Drive
                 </button>
                 <button class="btn btn-secondary" onclick="editEvent()" id="editEventBtn">
@@ -651,15 +1059,49 @@
         </div>
     </div>
 
+    <!-- Modal Sélection Dossier -->
+    <div id="folderSelectionModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Choisir le dossier parent</h2>
+                <button class="close-btn" onclick="closeFolderSelectionModal()">×</button>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">
+                    Dans quel dossier souhaitez-vous créer le dossier de l'événement ?
+                </p>
+                <button class="btn btn-primary" onclick="createDriveFolderInParent('freres')" style="width: 100%; margin-bottom: 12px;">
+                    👨 Dossier Frères
+                </button>
+                <button class="btn btn-primary" onclick="createDriveFolderInParent('soeurs')" style="width: 100%; background: #a142f4;">
+                    👩 Dossier Sœurs
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div id="statusMessage" class="status-message"></div>
+
+    <!-- Overlay de chargement -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loadingText">Création du dossier en cours...</div>
+        <div class="loading-subtext" id="loadingSubtext">Cela peut prendre 30 à 60 secondes ⏱️</div>
+    </div>
 
     <script>
         // Configuration Google Sheets
         const SHEETS_CONFIG = {
             spreadsheetId: '1SN5_y8HbBzLY3vaIM5NXq6IVtEWG8aPyzqcIqVGpX6s',
-            apiUrl: 'https://script.google.com/macros/s/AKfycbyPrL8jOiEQHB6abC6Ga8_vUAD7sZd2sFwp3Z2otNj8ST5hHlSYa-6TOnWldeDnJbXg/exec',
+            apiUrl: 'https://script.google.com/macros/s/AKfycbzW4RLGcfVgHfN5799Ad8GIl4DoVbGwAIE1YsAJ_qcd6xSsA2VpRoLY_54gukPRmIno/exec',
             sheetName: 'Événements',
-            driveParentFolderId: '1hhZrEe5Hli8FZ9aJXlMk1ep7Zco4hXeh'
+            driveParentFolderId: '1hhZrEe5Hli8FZ9aJXlMk1ep7Zco4hXeh',
+            driveFreresId: '1fGy-l9_myj74ypfn5vS_MimAmJGMXsvG',
+            driveSoeursId: '1KyiVSZHOAhH-SgqM4AseaCGWEckGfqWe',
+            templateFolderId: '17sk1yoCKtkGzA0Jy1ExrFS0eLM7hc9Ma',
+            joursferiesSheet: 'Jours fériés',
+            occasionsSheet: 'Occasions religieuses'
         };
 
         // Couleurs prédéfinies
@@ -685,13 +1127,18 @@
         // État de l'application
         let currentDate = new Date();
         let currentView = 'month';
+        let currentViewMode = 'month'; // 'month' ou 'year'
         let events = [];
         let selectedEvent = null;
+        let joursFeries = [];
+        let occasionsReligieuses = [];
+        let currentTypeFilter = '';
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
             initializeCalendar();
             loadEvents();
+            loadSpecialDays();
             renderColorPicker();
             renderLegend();
         });
@@ -761,10 +1208,40 @@
             dayNumber.textContent = day;
             cell.appendChild(dayNumber);
 
-            // Ajouter les événements du jour
+            // Vérifier si c'est un jour férié ou une occasion religieuse
             if (!isOtherMonth) {
                 const dateStr = formatDate(dateObj);
-                const dayEvents = events.filter(e => e.date === dateStr);
+                
+                const jourFerie = joursFeries.find(jf => jf.date === dateStr);
+                const occasionReligieuse = occasionsReligieuses.find(or => or.date === dateStr);
+                
+                if (jourFerie) {
+                    const badge = document.createElement('div');
+                    badge.className = 'day-badge badge-ferie';
+                    badge.textContent = jourFerie.name || 'Férié';
+                    badge.title = jourFerie.name || 'Jour férié';
+                    cell.appendChild(badge);
+                }
+                
+                if (occasionReligieuse) {
+                    const badge = document.createElement('div');
+                    badge.className = 'day-badge badge-religieux';
+                    badge.textContent = occasionReligieuse.name || 'Religieux';
+                    badge.title = occasionReligieuse.name || 'Occasion religieuse';
+                    badge.style.right = jourFerie ? 'auto' : '6px';
+                    badge.style.left = jourFerie ? '6px' : 'auto';
+                    badge.style.top = jourFerie ? '32px' : '6px';
+                    cell.appendChild(badge);
+                }
+                
+                // Ajouter les événements du jour
+                let dayEvents = events.filter(e => e.date === dateStr);
+                
+                // Filtrer par type si un filtre est actif
+                if (currentTypeFilter) {
+                    dayEvents = dayEvents.filter(e => e.type === currentTypeFilter);
+                }
+                
                 dayEvents.forEach(event => {
                     const eventEl = document.createElement('div');
                     eventEl.className = 'event-item';
@@ -810,6 +1287,34 @@
             currentDate = new Date();
             updateMonthDisplay();
             renderCalendar();
+        }
+
+        function loadSpecialDays() {
+            if (!SHEETS_CONFIG.apiUrl) return;
+            
+            // Charger les jours fériés
+            fetch(SHEETS_CONFIG.apiUrl + '?action=getSpecialDays&type=feries')
+            .then(response => response.text())
+            .then(text => {
+                const data = JSON.parse(text);
+                if (data.success && data.days) {
+                    joursFeries = data.days;
+                    renderCalendar();
+                }
+            })
+            .catch(error => console.error('Erreur chargement jours fériés:', error));
+            
+            // Charger les occasions religieuses
+            fetch(SHEETS_CONFIG.apiUrl + '?action=getSpecialDays&type=religieux')
+            .then(response => response.text())
+            .then(text => {
+                const data = JSON.parse(text);
+                if (data.success && data.days) {
+                    occasionsReligieuses = data.days;
+                    renderCalendar();
+                }
+            })
+            .catch(error => console.error('Erreur chargement occasions:', error));
         }
 
         function changeView(view) {
@@ -949,6 +1454,12 @@
                         <span class="event-details-label">N° Budget :</span>
                         <span class="event-details-value">${event.budgetRef}</span>
                     </div>
+                    <div class="event-details-row">
+                        <span class="event-details-label">Accès fichier Budget 2026 :</span>
+                        <a href="https://docs.google.com/spreadsheets/d/1aN6OMB2co23ak1LS009a_7NxXw45flIFlSGFwdfXQwM/edit?usp=sharing" target="_blank" class="drive-link">
+                            📊 Ouvrir Budget 2026
+                        </a>
+                    </div>
                 `;
             }
             
@@ -1016,8 +1527,160 @@
             }
         }
 
-        function createDriveFolder() {
+        function filterByType(type = '') {
+            currentTypeFilter = type;
+            renderLegend(); // Rafraîchir pour mettre à jour l'état actif
+            if (currentViewMode === 'month') {
+                renderCalendar();
+            } else {
+                renderYearView();
+            }
+        }
+
+        function switchView(viewMode) {
+            currentViewMode = viewMode;
+            
+            // Mettre à jour les boutons
+            document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Afficher/masquer les vues
+            const calendarGrid = document.getElementById('calendarGrid');
+            const yearView = document.getElementById('yearView');
+            const calendarNav = document.querySelector('.calendar-nav-left');
+            
+            if (viewMode === 'month') {
+                calendarGrid.style.display = 'grid';
+                yearView.style.display = 'none';
+                if (calendarNav) calendarNav.style.display = 'flex';
+                renderCalendar();
+            } else {
+                calendarGrid.style.display = 'none';
+                yearView.style.display = 'grid';
+                if (calendarNav) calendarNav.style.display = 'none';
+                renderYearView();
+            }
+        }
+
+        function renderYearView() {
+            const yearView = document.getElementById('yearView');
+            yearView.innerHTML = '';
+            
+            const year = currentDate.getFullYear();
+            const monthNames = [
+                'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+            ];
+            
+            // Créer 12 mini-calendriers
+            for (let month = 0; month < 12; month++) {
+                const card = document.createElement('div');
+                card.className = 'year-month-card';
+                
+                const title = document.createElement('div');
+                title.className = 'year-month-title';
+                title.textContent = `${monthNames[month]} ${year}`;
+                card.appendChild(title);
+                
+                const grid = document.createElement('div');
+                grid.className = 'year-month-grid';
+                
+                // En-têtes des jours
+                const dayHeaders = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+                dayHeaders.forEach(day => {
+                    const header = document.createElement('div');
+                    header.textContent = day;
+                    header.style.fontWeight = '600';
+                    header.style.color = 'var(--text-secondary)';
+                    header.style.fontSize = '10px';
+                    grid.appendChild(header);
+                });
+                
+                // Jours du mois
+                const firstDay = new Date(year, month, 1);
+                const lastDay = new Date(year, month + 1, 0);
+                const startingDayOfWeek = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+                
+                // Jours du mois précédent
+                const prevMonthLastDay = new Date(year, month, 0).getDate();
+                for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'year-day other-month';
+                    dayEl.textContent = prevMonthLastDay - i;
+                    grid.appendChild(dayEl);
+                }
+                
+                // Jours du mois actuel
+                for (let day = 1; day <= lastDay.getDate(); day++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'year-day';
+                    dayEl.textContent = day;
+                    
+                    const dateObj = new Date(year, month, day);
+                    const dateStr = formatDate(dateObj);
+                    
+                    // Vérifier si le jour a des événements
+                    let dayEvents = events.filter(e => e.date === dateStr);
+                    if (currentTypeFilter) {
+                        dayEvents = dayEvents.filter(e => e.type === currentTypeFilter);
+                    }
+                    
+                    if (dayEvents.length > 0) {
+                        dayEl.classList.add('has-event');
+                        dayEl.title = dayEvents.map(e => e.name).join(', ');
+                    }
+                    
+                    // Vérifier si c'est aujourd'hui
+                    const today = new Date();
+                    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        dayEl.style.border = '2px solid var(--primary)';
+                    }
+                    
+                    dayEl.onclick = () => {
+                        currentDate = new Date(year, month, day);
+                        switchView('month');
+                        // Réactiver le bouton mensuel
+                        document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.textContent.includes('Mensuel')) {
+                                btn.classList.add('active');
+                            }
+                        });
+                    };
+                    
+                    grid.appendChild(dayEl);
+                }
+                
+                // Jours du mois suivant
+                const remainingCells = 42 - grid.children.length + 7;
+                for (let day = 1; day <= remainingCells; day++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'year-day other-month';
+                    dayEl.textContent = day;
+                    grid.appendChild(dayEl);
+                }
+                
+                card.appendChild(grid);
+                yearView.appendChild(card);
+            }
+        }
+
+        function openFolderSelectionModal() {
             if (!selectedEvent) return;
+            document.getElementById('folderSelectionModal').classList.add('active');
+        }
+
+        function closeFolderSelectionModal() {
+            document.getElementById('folderSelectionModal').classList.remove('active');
+        }
+
+        function createDriveFolderInParent(parentType) {
+            if (!selectedEvent) return;
+            
+            // Fermer la popup de sélection
+            closeFolderSelectionModal();
             
             // Vérifier la configuration
             if (!SHEETS_CONFIG.apiUrl) {
@@ -1025,46 +1688,93 @@
                 return;
             }
             
-            showMessage('Création du dossier Drive en cours...');
+            // Afficher l'overlay de chargement
+            showLoadingOverlay('Création du dossier en cours...', 'Copie des fichiers et sous-dossiers (30-60 secondes) ⏱️');
+            
+            const parentFolderId = parentType === 'freres' ? SHEETS_CONFIG.driveFreresId : SHEETS_CONFIG.driveSoeursId;
             
             const requestData = {
                 action: 'createFolder',
                 eventId: selectedEvent.id,
                 eventName: selectedEvent.name,
-                eventDate: selectedEvent.date
+                eventDate: selectedEvent.date,
+                parentFolderId: parentFolderId,
+                templateFolderId: SHEETS_CONFIG.driveParentFolderId
             };
             
             fetch(SHEETS_CONFIG.apiUrl, {
                 method: 'POST',
-                body: JSON.stringify(requestData)
+                body: JSON.stringify(requestData),
+                redirect: 'follow'
             })
-            .then(response => response.text())
-            .then(data => {
-                console.log('Réponse création dossier:', data);
-                // Recharger les événements pour obtenir le lien du dossier
+            .then(response => {
+                console.log('Status:', response.status);
+                // Mettre à jour le texte de chargement
+                updateLoadingText('Finalisation...', 'Mise à jour du lien dans Google Sheets 🔗');
+                return response.text();
+            })
+            .then(text => {
+                console.log('Réponse création dossier:', text);
+                // Attendre un peu pour la synchronisation
                 setTimeout(() => {
                     syncWithSheets();
-                    showMessage('✓ Dossier créé avec succès !');
+                    hideLoadingOverlay();
+                    showMessage('✓ Dossier créé avec tout son contenu !');
                     closeDetailsModal();
                 }, 2000);
             })
             .catch(error => {
                 console.error('Erreur création dossier:', error);
+                hideLoadingOverlay();
                 showMessage('❌ Erreur lors de la création du dossier');
             });
+        }
+
+        function showLoadingOverlay(text, subtext) {
+            const overlay = document.getElementById('loadingOverlay');
+            const loadingText = document.getElementById('loadingText');
+            const loadingSubtext = document.getElementById('loadingSubtext');
+            
+            loadingText.textContent = text;
+            loadingSubtext.textContent = subtext;
+            overlay.classList.add('active');
+        }
+
+        function updateLoadingText(text, subtext) {
+            const loadingText = document.getElementById('loadingText');
+            const loadingSubtext = document.getElementById('loadingSubtext');
+            
+            loadingText.textContent = text;
+            if (subtext) {
+                loadingSubtext.textContent = subtext;
+            }
+        }
+
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.remove('active');
         }
 
         function renderLegend() {
             const container = document.getElementById('legendItems');
             container.innerHTML = '';
             
+            // Ajouter le bouton "Tous"
+            const allItem = document.createElement('div');
+            allItem.className = 'legend-item' + (currentTypeFilter === '' ? ' active' : '');
+            allItem.innerHTML = `<span>Tous</span>`;
+            allItem.onclick = () => filterByType('');
+            container.appendChild(allItem);
+            
+            // Ajouter les types d'événements
             Object.entries(EVENT_TYPES).forEach(([key, type]) => {
                 const item = document.createElement('div');
-                item.className = 'legend-item';
+                item.className = 'legend-item' + (currentTypeFilter === key ? ' active' : '');
                 item.innerHTML = `
                     <div class="legend-color" style="background: ${type.color}"></div>
                     <span>${type.label}</span>
                 `;
+                item.onclick = () => filterByType(key);
                 container.appendChild(item);
             });
         }
