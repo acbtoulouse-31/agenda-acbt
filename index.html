@@ -963,7 +963,7 @@
             }
 
             .calendar-container {
-                padding: 12px 8px;
+                padding: 12px 6px;
             }
 
             .calendar-toolbar {
@@ -1035,57 +1035,110 @@
                 font-size: 13px;
             }
 
-            /* CALENDRIER - FIT SMARTPHONE */
+            /* CALENDRIER COMPACT - COLONNES RESSERRÉES */
             .calendar-grid {
-                font-size: 11px;
-                gap: 2px;
+                font-size: 10px;
+                gap: 1px;
+                grid-template-columns: repeat(7, 1fr);
             }
 
             .calendar-header {
-                padding: 8px 0;
+                padding: 6px 0;
+                background: #f8f9fa;
             }
 
             .calendar-header div {
-                font-size: 11px;
-                font-weight: 600;
+                font-size: 10px;
+                font-weight: 700;
+                text-align: center;
+                padding: 4px 2px;
             }
 
             .day-cell {
-                min-height: 70px;
-                max-height: 90px;
-                padding: 3px;
-                border: 1px solid #e0e0e0;
+                min-height: 55px;
+                max-height: 55px;
+                padding: 2px;
+                border: 1px solid #e8e8e8;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
             }
 
             .day-cell.today {
                 border: 2px solid var(--primary);
+                background: rgba(66, 133, 244, 0.05);
+            }
+
+            .day-cell.other-month {
+                background: #fafafa;
             }
 
             .day-number {
-                font-size: 13px;
+                font-size: 11px;
+                font-weight: 600;
                 margin-bottom: 2px;
+                text-align: center;
             }
 
+            /* ÉVÉNEMENTS = PASTILLES DE COULEUR UNIQUEMENT */
             .event-item {
-                font-size: 9px;
-                padding: 2px 4px;
-                margin-bottom: 2px;
-                border-radius: 3px;
+                font-size: 0 !important;
+                text-indent: -9999px;
+                overflow: hidden;
+                padding: 0 !important;
+                margin: 1px 0;
+                border-radius: 2px;
+                min-height: 8px;
+                max-height: 8px;
+                width: 100%;
+                cursor: pointer;
             }
 
             .event-item.bordered {
-                font-size: 9px;
-                padding: 2px 4px;
-                border-width: 1.5px;
+                font-size: 0 !important;
+                text-indent: -9999px;
+                padding: 0 !important;
+                border-width: 1px !important;
+                min-height: 8px;
+                max-height: 8px;
             }
 
+            /* BADGES JOURS SPÉCIAUX = PASTILLES DE COULEUR UNIQUEMENT */
             .day-badge {
-                font-size: 6px;
-                padding: 2px 4px;
-                max-width: 90%;
-                white-space: nowrap;
+                font-size: 0 !important;
+                text-indent: -9999px;
                 overflow: hidden;
-                text-overflow: ellipsis;
+                padding: 0 !important;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                border: none !important;
+            }
+
+            .day-badge.badge-ferie {
+                background: #ea4335 !important;
+            }
+
+            .day-badge.badge-religieux {
+                background: #34a853 !important;
+                top: auto;
+                bottom: 3px;
+                right: 3px;
+            }
+
+            /* Si 2 badges : positionner différemment */
+            .day-cell:has(.day-badge.badge-ferie):has(.day-badge.badge-religieux) .day-badge.badge-ferie {
+                top: 3px;
+                right: 3px;
+            }
+
+            .day-cell:has(.day-badge.badge-ferie):has(.day-badge.badge-religieux) .day-badge.badge-religieux {
+                top: 3px;
+                left: 3px;
+                right: auto;
             }
 
             /* MODALS MOBILE */
