@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda ACBT - Bureau ACBT</title>
+    <title>Agenda Connecté - Bureau ACBT</title>
     <style>
         * {
             margin: 0;
@@ -541,9 +541,9 @@
         }
 
         .event-item.bordered {
-            background: #fffbea;
-            color: #856404;
-            border: 2px solid #ffd966;
+            background: #fffbea !important;
+            color: #856404 !important;
+            border: 2px solid #ffd966 !important;
             font-weight: 500;
         }
 
@@ -738,6 +738,11 @@
             border-bottom: 1px solid var(--border);
         }
 
+        .event-details-row.column {
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .event-details-row:last-child {
             border-bottom: none;
             margin-bottom: 0;
@@ -751,6 +756,10 @@
 
         .event-details-value {
             color: var(--text-primary);
+        }
+
+        .event-details-value.budget-ref {
+            font-weight: 600;
         }
 
         .drive-link {
@@ -910,32 +919,42 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
             .container {
                 padding: 0;
+                max-width: 100%;
             }
 
             header {
                 flex-direction: column;
-                gap: 16px;
-                padding: 20px 16px;
+                gap: 12px;
+                padding: 16px 12px;
                 border-radius: 0;
             }
 
             h1 {
+                font-size: 22px;
+            }
+
+            h1::before {
                 font-size: 24px;
             }
 
             .header-actions {
                 width: 100%;
                 justify-content: stretch;
-                gap: 12px;
+                gap: 10px;
             }
 
             .header-actions .btn {
                 flex: 1;
                 justify-content: center;
-                padding: 12px 20px;
+                padding: 10px 16px;
                 font-size: 13px;
+                border-radius: 10px;
             }
 
             .header-actions .btn svg {
@@ -943,75 +962,33 @@
                 height: 14px;
             }
 
-            .calendar-header {
-                flex-direction: column;
-                gap: 12px;
-                align-items: stretch;
+            .calendar-container {
+                padding: 12px 8px;
             }
 
-            .calendar-nav {
-                justify-content: space-between;
-            }
-
-            .current-month {
-                font-size: 18px;
-                min-width: 150px;
-            }
-
-            .filter-container {
-                width: 100%;
-            }
-
-            .filter-container .form-select {
-                width: 100%;
-            }
-
-            .calendar-grid {
-                font-size: 11px;
-            }
-
-            .day-cell {
-                min-height: 80px;
-                padding: 4px;
-            }
-
-            .day-number {
-                font-size: 12px;
-            }
-
-            .event-item {
-                font-size: 10px;
-                padding: 2px 4px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 16px;
-                max-height: 85vh;
-            }
-
-            .btn {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-
-            h1 {
-                font-size: 20px;
+            .calendar-toolbar {
+                margin-bottom: 16px;
             }
 
             .calendar-header-row {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 12px;
+                gap: 10px;
             }
 
             .calendar-nav-left {
                 width: 100%;
                 justify-content: space-between;
+                gap: 8px;
+            }
+
+            .calendar-nav-left button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            #currentMonth {
+                font-size: 16px;
             }
 
             .calendar-controls-right {
@@ -1022,17 +999,30 @@
             .legend-row {
                 flex-direction: column;
                 align-items: center;
-                gap: 8px;
+                gap: 10px;
+            }
+
+            .legend-label {
+                font-size: 11px;
+                text-transform: uppercase;
+                font-weight: 600;
             }
 
             .legend-items {
                 width: 100%;
                 justify-content: center;
+                gap: 6px;
             }
 
             .legend-item {
                 font-size: 10px;
-                padding: 5px 10px;
+                padding: 6px 10px;
+                border-radius: 12px;
+            }
+
+            .legend-color {
+                width: 10px !important;
+                height: 10px !important;
             }
 
             .view-toggle {
@@ -1042,19 +1032,146 @@
             .view-toggle-btn {
                 flex: 1;
                 padding: 10px 16px;
+                font-size: 13px;
             }
 
-            .year-view {
-                grid-template-columns: 1fr;
-                gap: 16px;
+            /* CALENDRIER - FIT SMARTPHONE */
+            .calendar-grid {
+                font-size: 11px;
+                gap: 2px;
+            }
+
+            .calendar-header {
+                padding: 8px 0;
+            }
+
+            .calendar-header div {
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            .day-cell {
+                min-height: 70px;
+                max-height: 90px;
+                padding: 3px;
+                border: 1px solid #e0e0e0;
+            }
+
+            .day-cell.today {
+                border: 2px solid var(--primary);
+            }
+
+            .day-number {
+                font-size: 13px;
+                margin-bottom: 2px;
+            }
+
+            .event-item {
+                font-size: 9px;
+                padding: 2px 4px;
+                margin-bottom: 2px;
+                border-radius: 3px;
+            }
+
+            .event-item.bordered {
+                font-size: 9px;
+                padding: 2px 4px;
+                border-width: 1.5px;
             }
 
             .day-badge {
-                font-size: 7px;
-                padding: 2px 5px;
-                max-width: 80%;
+                font-size: 6px;
+                padding: 2px 4px;
+                max-width: 90%;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+
+            /* MODALS MOBILE */
+            .modal-content {
+                width: 95%;
+                max-width: 95%;
+                padding: 16px;
+                max-height: 90vh;
+                overflow-y: auto;
+                border-radius: 12px;
+            }
+
+            .modal-header {
+                padding: 12px;
+            }
+
+            .modal-header h2 {
+                font-size: 18px;
+            }
+
+            .modal-body {
+                padding: 12px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .btn {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+
+            .modal-footer {
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .modal-footer .btn {
+                flex: 1;
+            }
+
+            /* VUE ANNUELLE MOBILE */
+            .year-view {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .year-month-card {
+                padding: 12px;
+            }
+
+            .year-month-title {
+                font-size: 14px;
+            }
+
+            /* ÉVÉNEMENT DÉTAILS */
+            .event-details-row {
+                flex-direction: column;
+                gap: 4px;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+
+            .event-details-label {
+                font-size: 12px;
+            }
+
+            .event-details-value {
+                font-size: 13px;
+            }
+
+            .drive-link {
+                font-size: 13px;
+            }
+
+            /* CONTAINER FIT */
+            .container {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .calendar-container {
+                flex: 1;
             }
         }
     </style>
@@ -1386,10 +1503,9 @@
                     // Vérifier si l'événement a un contour (Réservation salle)
                     const eventType = EVENT_TYPES[event.type];
                     if (eventType && eventType.border) {
-                        // Style avec contour
+                        // Style avec contour - utiliser les couleurs du type
                         eventEl.classList.add('bordered');
-                        eventEl.style.backgroundColor = event.color;
-                        eventEl.style.borderColor = eventType.border;
+                        // Le CSS .bordered gère déjà background et border
                     } else {
                         // Style normal
                         eventEl.style.backgroundColor = event.color;
@@ -1642,14 +1758,14 @@
                 html += `
                     <div class="event-details-row">
                         <span class="event-details-label">N° Budget :</span>
-                        <span class="event-details-value">${budgetValue}</span>
+                        <span class="event-details-value budget-ref">${budgetValue}</span>
                     </div>
                 `;
             }
             
             if (event.description) {
                 html += `
-                    <div class="event-details-row">
+                    <div class="event-details-row column">
                         <span class="event-details-label">Description :</span>
                         <span class="event-details-value">${event.description}</span>
                     </div>
