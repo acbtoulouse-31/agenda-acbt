@@ -37,68 +37,132 @@
         }
 
         header {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            padding: 20px 32px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 24px 40px;
+            box-shadow: 0 8px 32px rgba(30, 60, 114, 0.4);
             margin-bottom: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(66, 133, 244, 0.1);
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         h1 {
-            font-size: 26px;
-            font-weight: 300;
-            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         h1::before {
             content: '📅';
-            font-size: 28px;
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .header-actions {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
             border: none;
-            border-radius: 4px;
+            border-radius: 12px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.5);
+            border: 0.5px solid rgba(255, 255, 255, 0.4);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            box-shadow: var(--shadow-large);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.6);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-secondary {
-            background: var(--surface);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3748;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .btn-secondary:hover {
-            background: #f1f3f4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
         }
 
         .calendar-container {
@@ -476,6 +540,13 @@
             white-space: nowrap;
         }
 
+        .event-item.bordered {
+            background: #fffbea;
+            color: #856404;
+            border: 2px solid #ffd966;
+            font-weight: 500;
+        }
+
         .event-item:hover {
             transform: translateX(2px);
             box-shadow: var(--shadow);
@@ -573,6 +644,42 @@
             font-size: 14px;
             font-family: inherit;
             transition: border-color 0.2s;
+        }
+
+        /* Style pour les options du select eventType avec couleurs */
+        #eventType {
+            background-image: none;
+        }
+
+        #eventType option {
+            padding: 10px 12px;
+            font-weight: 500;
+        }
+
+        #eventType option[value="ER"] {
+            background: linear-gradient(90deg, #81c995 12px, white 12px);
+            padding-left: 24px;
+        }
+
+        #eventType option[value="IP"] {
+            background: linear-gradient(90deg, #ffab73 12px, white 12px);
+            padding-left: 24px;
+        }
+
+        #eventType option[value="EDUCATION"] {
+            background: linear-gradient(90deg, #7dabf8 12px, white 12px);
+            padding-left: 24px;
+        }
+
+        #eventType option[value="Réservation salle"] {
+            background: linear-gradient(90deg, #fffbea 12px, white 12px);
+            border-left: 3px solid #ffd966;
+            padding-left: 24px;
+        }
+
+        #eventType option[value="Controle annuel centre"] {
+            background: linear-gradient(90deg, #f28b82 12px, white 12px);
+            padding-left: 24px;
         }
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -804,18 +911,36 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 8px;
+                padding: 0;
             }
 
             header {
                 flex-direction: column;
-                gap: 12px;
-                padding: 12px;
+                gap: 16px;
+                padding: 20px 16px;
+                border-radius: 0;
+            }
+
+            h1 {
+                font-size: 24px;
             }
 
             .header-actions {
                 width: 100%;
-                justify-content: space-between;
+                justify-content: stretch;
+                gap: 12px;
+            }
+
+            .header-actions .btn {
+                flex: 1;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .header-actions .btn svg {
+                width: 14px;
+                height: 14px;
             }
 
             .calendar-header {
@@ -937,13 +1062,20 @@
 <body>
     <div class="container">
         <header>
-            <h1>📅 Agenda Connecté</h1>
+            <h1>Agenda Connecté</h1>
             <div class="header-actions">
                 <button class="btn btn-secondary" onclick="syncWithSheets()">
-                    🔄 Synchroniser
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                    </svg>
+                    Synchroniser
                 </button>
                 <button class="btn btn-primary" onclick="openEventModal()">
-                    ➕ Nouvel événement
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Nouvel événement
                 </button>
             </div>
         </header>
@@ -1002,13 +1134,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Type d'événement *</label>
-                    <select class="form-select" id="eventType" required onchange="updateColorPreview()">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <label class="form-label" style="margin: 0;">Type d'événement *</label>
+                        <div id="typeColorIndicator" style="width: 16px; height: 16px; border-radius: 50%; display: none;"></div>
+                    </div>
+                    <select class="form-select" id="eventType" required onchange="updateColorPreview(); updateTypeColorIndicator();">
                         <option value="">Sélectionner un type</option>
-                        <option value="Controle visite">Controle visite</option>
-                        <option value="ER">ER</option>
-                        <option value="IP">IP</option>
-                        <option value="EDUCATION">EDUCATION</option>
+                        <option value="ER">● ER</option>
+                        <option value="IP">● IP</option>
+                        <option value="EDUCATION">● EDUCATION</option>
+                        <option value="Réservation salle">◯ Réservation salle</option>
+                        <option value="Controle annuel centre">● Controle annuel centre</option>
                     </select>
                 </div>
 
@@ -1094,7 +1230,7 @@
         // Configuration Google Sheets
         const SHEETS_CONFIG = {
             spreadsheetId: '1SN5_y8HbBzLY3vaIM5NXq6IVtEWG8aPyzqcIqVGpX6s',
-            apiUrl: 'https://script.google.com/macros/s/AKfycbzW4RLGcfVgHfN5799Ad8GIl4DoVbGwAIE1YsAJ_qcd6xSsA2VpRoLY_54gukPRmIno/exec',
+            apiUrl: 'https://script.google.com/macros/s/AKfycbzKipyUKObDKqMT34WqqR1eHIZmvjg0zjzt_Qedy58QaSr4qcKa-aKKsJIUJTy3Z6c_/exec',
             sheetName: 'Événements',
             driveParentFolderId: '1hhZrEe5Hli8FZ9aJXlMk1ep7Zco4hXeh',
             driveFreresId: '1fGy-l9_myj74ypfn5vS_MimAmJGMXsvG',
@@ -1118,10 +1254,11 @@
 
         // Types d'événements avec couleurs par défaut
         const EVENT_TYPES = {
-            'Controle visite': { label: 'Controle visite', color: '#ea4335' },
-            'ER': { label: 'ER', color: '#34a853' },
-            'IP': { label: 'IP', color: '#ff6d01' },
-            'EDUCATION': { label: 'EDUCATION', color: '#4285f4' }
+            'ER': { label: 'ER', color: '#34a853' },                          // Vert vif
+            'IP': { label: 'IP', color: '#ff6d01' },                           // Orange vif
+            'EDUCATION': { label: 'EDUCATION', color: '#4285f4' },             // Bleu vif
+            'Réservation salle': { label: 'Réservation salle', color: '#fffbea', border: '#ffd966' },  // Jaune très clair avec contour
+            'Controle annuel centre': { label: 'Controle annuel centre', color: '#ea4335' }  // Rouge vif
         };
 
         // État de l'application
@@ -1245,7 +1382,19 @@
                 dayEvents.forEach(event => {
                     const eventEl = document.createElement('div');
                     eventEl.className = 'event-item';
-                    eventEl.style.backgroundColor = event.color;
+                    
+                    // Vérifier si l'événement a un contour (Réservation salle)
+                    const eventType = EVENT_TYPES[event.type];
+                    if (eventType && eventType.border) {
+                        // Style avec contour
+                        eventEl.classList.add('bordered');
+                        eventEl.style.backgroundColor = event.color;
+                        eventEl.style.borderColor = eventType.border;
+                    } else {
+                        // Style normal
+                        eventEl.style.backgroundColor = event.color;
+                    }
+                    
                     eventEl.textContent = event.name;
                     eventEl.onclick = (e) => {
                         e.stopPropagation();
@@ -1332,6 +1481,10 @@
         }
 
         function openEventModal(date = null) {
+            // Réinitialiser selectedEvent et le titre
+            selectedEvent = null;
+            document.getElementById('modalTitle').textContent = 'Nouvel événement';
+            
             document.getElementById('eventModal').classList.add('active');
             document.getElementById('eventForm').reset();
             
@@ -1340,8 +1493,6 @@
             } else {
                 document.getElementById('eventDate').value = formatDate(new Date());
             }
-            
-            selectedEvent = null;
         }
 
         function closeEventModal() {
@@ -1389,6 +1540,27 @@
             }
         }
 
+        function updateTypeColorIndicator() {
+            const type = document.getElementById('eventType').value;
+            const indicator = document.getElementById('typeColorIndicator');
+            
+            if (type && EVENT_TYPES[type]) {
+                const eventType = EVENT_TYPES[type];
+                indicator.style.display = 'block';
+                indicator.style.backgroundColor = eventType.color;
+                
+                // Style spécial pour Réservation salle avec contour
+                if (eventType.border) {
+                    indicator.style.border = `2px solid ${eventType.border}`;
+                    indicator.style.backgroundColor = eventType.color;
+                } else {
+                    indicator.style.border = 'none';
+                }
+            } else {
+                indicator.style.display = 'none';
+            }
+        }
+
         function rgbToHex(rgb) {
             const values = rgb.match(/\d+/g);
             return '#' + values.map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
@@ -1410,6 +1582,7 @@
                 description: document.getElementById('eventDescription').value,
                 color: rgbToHex(color),
                 driveFolder: selectedEvent ? selectedEvent.driveFolder : null,
+                budgetLink: selectedEvent ? selectedEvent.budgetLink : null,
                 createdAt: selectedEvent ? selectedEvent.createdAt : new Date().toISOString()
             };
 
@@ -1417,6 +1590,7 @@
                 const index = events.findIndex(e => e.id === selectedEvent.id);
                 events[index] = event;
                 showMessage('Événement modifié avec succès');
+                selectedEvent = null; // Réinitialiser selectedEvent après modification
             } else {
                 events.push(event);
                 showMessage('Événement créé avec succès');
@@ -1432,12 +1606,17 @@
             selectedEvent = event;
             document.getElementById('detailsTitle').textContent = event.name;
             
+            // Debug: vérifier si budgetLink est présent
+            console.log('Event details:', event);
+            console.log('budgetRef:', event.budgetRef);
+            console.log('budgetLink:', event.budgetLink);
+            
             const typeLabel = EVENT_TYPES[event.type] ? EVENT_TYPES[event.type].label : event.type;
             
             let html = `
                 <div class="event-details-row">
                     <span class="event-details-label">Date :</span>
-                    <span class="event-details-value">${formatDateDisplay(event.date)} ${event.time || ''}</span>
+                    <span class="event-details-value">${formatDateDisplayFull(event.date)} ${event.time || ''}</span>
                 </div>
                 <div class="event-details-row">
                     <span class="event-details-label">Type :</span>
@@ -1449,16 +1628,21 @@
             `;
             
             if (event.budgetRef) {
+                // Construire la valeur avec le N° Budget et le lien sur la même ligne
+                let budgetValue = event.budgetRef;
+                
+                // Ajouter le lien Budget à côté si disponible
+                if (event.budgetLink && event.budgetLink !== '') {
+                    console.log('Affichage du lien budget:', event.budgetLink);
+                    budgetValue += ` <a href="${event.budgetLink}" target="_blank" class="drive-link" style="margin-left: 12px; display: inline-flex;">
+                        📊 Voir Budget 2026
+                    </a>`;
+                }
+                
                 html += `
                     <div class="event-details-row">
                         <span class="event-details-label">N° Budget :</span>
-                        <span class="event-details-value">${event.budgetRef}</span>
-                    </div>
-                    <div class="event-details-row">
-                        <span class="event-details-label">Accès fichier Budget 2026 :</span>
-                        <a href="https://docs.google.com/spreadsheets/d/1aN6OMB2co23ak1LS009a_7NxXw45flIFlSGFwdfXQwM/edit?usp=sharing" target="_blank" class="drive-link">
-                            📊 Ouvrir Budget 2026
-                        </a>
+                        <span class="event-details-value">${budgetValue}</span>
                     </div>
                 `;
             }
@@ -1481,9 +1665,11 @@
                         </a>
                     </div>
                 `;
-                document.getElementById('createFolderBtn').textContent = '📁 Dossier créé';
-                document.getElementById('createFolderBtn').disabled = true;
+                // Masquer complètement le bouton quand le dossier existe
+                document.getElementById('createFolderBtn').style.display = 'none';
             } else {
+                // Afficher le bouton quand le dossier n'existe pas
+                document.getElementById('createFolderBtn').style.display = 'inline-flex';
                 document.getElementById('createFolderBtn').textContent = '📁 Créer dossier Drive';
                 document.getElementById('createFolderBtn').disabled = false;
             }
@@ -1497,6 +1683,10 @@
             
             closeDetailsModal();
             
+            // Changer le titre du modal
+            document.getElementById('modalTitle').textContent = 'Modifier l\'événement';
+            
+            // Remplir le formulaire
             document.getElementById('eventName').value = selectedEvent.name;
             document.getElementById('eventDate').value = selectedEvent.date;
             document.getElementById('eventTime').value = selectedEvent.time || '';
@@ -1504,27 +1694,62 @@
             document.getElementById('budgetRef').value = selectedEvent.budgetRef || '';
             document.getElementById('eventDescription').value = selectedEvent.description || '';
             
+            // Mettre à jour l'aperçu de couleur
+            updateColorPreview();
+            
             // Sélectionner la couleur
             const colorOptions = document.querySelectorAll('.color-option');
             colorOptions.forEach(opt => {
+                opt.classList.remove('selected');
                 if (rgbToHex(opt.style.backgroundColor) === selectedEvent.color) {
-                    selectColor(selectedEvent.color, opt);
+                    opt.classList.add('selected');
                 }
             });
             
-            openEventModal();
+            // Ouvrir le modal
+            document.getElementById('eventModal').classList.add('active');
         }
 
         function deleteEvent() {
             if (!selectedEvent) return;
             
-            if (confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')) {
-                events = events.filter(e => e.id !== selectedEvent.id);
-                saveToLocalStorage();
-                showMessage('Événement supprimé');
-                closeDetailsModal();
-                renderCalendar();
+            if (!confirm(`Êtes-vous sûr de vouloir supprimer "${selectedEvent.name}" ?`)) {
+                return;
             }
+            
+            const eventId = selectedEvent.id;
+            
+            // Supprimer de localStorage
+            events = events.filter(e => e.id !== eventId);
+            saveToLocalStorage();
+            
+            // Supprimer de Google Sheets
+            if (SHEETS_CONFIG.apiUrl) {
+                const requestData = {
+                    action: 'deleteEvent',
+                    id: eventId
+                };
+                
+                fetch(SHEETS_CONFIG.apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(requestData),
+                    redirect: 'follow'
+                })
+                .then(response => response.text())
+                .then(text => {
+                    console.log('Réponse suppression:', text);
+                    showMessage('✓ Événement supprimé avec succès');
+                })
+                .catch(error => {
+                    console.error('Erreur suppression Sheets:', error);
+                    showMessage('⚠️ Supprimé localement (erreur sync Sheets)');
+                });
+            } else {
+                showMessage('✓ Événement supprimé');
+            }
+            
+            closeDetailsModal();
+            renderCalendar();
         }
 
         function filterByType(type = '') {
@@ -1770,10 +1995,20 @@
             Object.entries(EVENT_TYPES).forEach(([key, type]) => {
                 const item = document.createElement('div');
                 item.className = 'legend-item' + (currentTypeFilter === key ? ' active' : '');
-                item.innerHTML = `
-                    <div class="legend-color" style="background: ${type.color}"></div>
-                    <span>${type.label}</span>
-                `;
+                
+                // Vérifier si le type a un contour
+                if (type.border) {
+                    item.innerHTML = `
+                        <div class="legend-color" style="background: ${type.color}; border: 2px solid ${type.border};"></div>
+                        <span>${type.label}</span>
+                    `;
+                } else {
+                    item.innerHTML = `
+                        <div class="legend-color" style="background: ${type.color}"></div>
+                        <span>${type.label}</span>
+                    `;
+                }
+                
                 item.onclick = () => filterByType(key);
                 container.appendChild(item);
             });
@@ -1876,6 +2111,17 @@
             const date = new Date(year, month - 1, day);
             const months = ['jan', 'fév', 'mar', 'avr', 'mai', 'juin', 'juil', 'aoû', 'sep', 'oct', 'nov', 'déc'];
             return `${day} ${months[date.getMonth()]} ${year}`;
+        }
+
+        function formatDateDisplayFull(dateStr) {
+            if (!dateStr) return '';
+            const [year, month, day] = dateStr.split('-');
+            const date = new Date(year, month - 1, day);
+            const months = [
+                'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+                'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+            ];
+            return `${parseInt(day)} ${months[date.getMonth()]} ${year}`;
         }
 
         function showMessage(message) {
